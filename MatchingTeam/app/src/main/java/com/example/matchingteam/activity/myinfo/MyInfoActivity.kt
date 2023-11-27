@@ -15,6 +15,7 @@ import com.example.matchingteam.api.user.MyInfoApi
 import com.example.matchingteam.connection.RetrofitConnection
 import com.example.matchingteam.databinding.ActivityMyInfoBinding
 import com.example.matchingteam.dto.user.UserInfoDto
+import com.example.matchingteam.dto.user.WriteCountDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,19 +25,21 @@ class MyInfoActivity : AppCompatActivity() {
     var userName: String? = null
     var userDepartment: String? = null
     var userStudentNum: Int = 0;
+    lateinit var binding: ActivityMyInfoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMyInfoBinding.inflate(layoutInflater)
+        binding = ActivityMyInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // 이전 Activity에서 사용된 Intent 가져온다.
         val intent: Intent = getIntent()
         val loginEmail: String? = intent.getStringExtra("loginEmail")
         val loginPassword: String? = intent.getStringExtra("loginPassword")
         getUserInfo(loginEmail.toString(), loginPassword.toString())
+        updateWriteCountUI(loginEmail!!)
         binding.buttonLogout.setOnClickListener {
             logout()
         }
-        binding.buttonWrite.setOnClickListener {
+        binding.textViewBoardList.setOnClickListener {
             val intent = Intent(this, EnrolBoardListActivity::class.java)
             startActivity(intent)
         }
@@ -118,5 +121,33 @@ class MyInfoActivity : AppCompatActivity() {
 
         val intent: Intent = Intent(this@MyInfoActivity, HomeActivity::class.java)
         startActivity(intent)
+    }
+
+    /**
+     * 작성한 게시물, 댓글 개수 출력
+     */
+    private fun updateWriteCountUI(email: String) {
+        val retrofit = RetrofitConnection.getInstance()
+        val api = retrofit.create(MyInfoApi::class.java)
+        val call = api.getWriteCount(email)
+        call.enqueue(object : Callback<WriteCountDto> {
+            override fun onResponse(call: Call<WriteCountDto>, response: Response<WriteCountDto>) {
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        val dto = response.body()!!
+                        binding.textViewBoardList.text = "내가 작성한 글 (${dto.boardCount}개)"
+                        if (dto.commentCount != 0)
+                            binding.textViewCommentList.text =
+                                "내가 작성한 댓글 (${dto.commentCount - 1}개)"
+                        else
+                            binding.textViewCommentList.text = "내가 작성한 댓글 (${dto.commentCount}개)"
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<WriteCountDto>, t: Throwable) {
+            }
+        })
     }
 }
