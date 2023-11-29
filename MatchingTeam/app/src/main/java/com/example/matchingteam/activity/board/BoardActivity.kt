@@ -200,7 +200,7 @@ class BoardActivity : AppCompatActivity() {
      * Timestamp -> String
      */
     private fun timestampToStr(time: Timestamp): String {
-        return SimpleDateFormat("yyyy.MM.dd").format(time)
+        return SimpleDateFormat("yyyy-MM-dd").format(time)
     }
 
     private fun stringToTimestamp(time: String): Timestamp {

@@ -23,6 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
 
 class ReadBoardActivity : AppCompatActivity() {
@@ -186,7 +187,7 @@ class ReadBoardActivity : AppCompatActivity() {
         binding.textViewCommentWriter.visibility = View.VISIBLE
         binding.editTextComment.setText(content)
         binding.editTextComment.visibility = View.VISIBLE
-        binding.textViewCommentCreatedDate.text = createdDate.toString()
+        binding.textViewCommentCreatedDate.text = "작성일자 : ${timestampToStr(createdDate)}"
         binding.textViewCommentCreatedDate.visibility = View.VISIBLE
         if (binding.buttonEnrolBtn.text == "등록")
             binding.buttonEnrolBtn.text = "삭제"
@@ -259,5 +260,8 @@ class ReadBoardActivity : AppCompatActivity() {
     private fun getLoginEmail(): String {
         val sp = getSharedPreferences("sharedPreferences", MODE_PRIVATE)
         return sp.getString("loginEmail", null)!!
+    }
+    private fun timestampToStr(date: Timestamp): String {
+        return SimpleDateFormat("yyyy-MM-dd").format(date)
     }
 }

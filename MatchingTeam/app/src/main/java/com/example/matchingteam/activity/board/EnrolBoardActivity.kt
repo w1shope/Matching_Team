@@ -30,6 +30,9 @@ class EnrolBoardActivity : AppCompatActivity() {
             val writerEmail: String = sp.getString("loginEmail", null).toString().trim()
             enrolBoard(title, content, writerEmail)
         }
+        binding.imageViewClose.setOnClickListener {
+            finish()
+        }
     }
 
     private fun enrolBoard(title: String, content: String, writerEmail: String) {

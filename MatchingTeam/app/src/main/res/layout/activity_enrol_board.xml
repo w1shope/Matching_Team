@@ -11,10 +11,10 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageview_close"
+            android:id="@+id/image_view_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"></ImageView>
+            android:src="@drawable/exit"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_width="70dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="115dp"
+            android:layout_marginLeft="85dp"
             android:background="@drawable/enrol_button"
             android:text="등록"
             android:textColor="@color/white"></Button>
