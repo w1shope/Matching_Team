@@ -174,6 +174,9 @@ class EnrolBoardListActivity : AppCompatActivity() {
                 0 -> "모집완료"
                 else -> "모집중"
             }
+        val newBackground =
+            if (binding.buttonStatus1.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+        binding.buttonStatus1.setBackgroundResource(newBackground)
     }
 
     private fun dynamicLayout2(
@@ -196,6 +199,9 @@ class EnrolBoardListActivity : AppCompatActivity() {
                 0 -> "모집완료"
                 else -> "모집중"
             }
+        val newBackground =
+            if (binding.buttonStatus2.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+        binding.buttonStatus2.setBackgroundResource(newBackground)
     }
 
     private fun dynamicLayout3(
@@ -218,6 +224,9 @@ class EnrolBoardListActivity : AppCompatActivity() {
                 0 -> "모집완료"
                 else -> "모집중"
             }
+        val newBackground =
+            if (binding.buttonStatus3.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+        binding.buttonStatus3.setBackgroundResource(newBackground)
     }
 
     private fun getLoginUserEmail(): String? {

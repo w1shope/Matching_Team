@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.matchingteam.R
 import com.example.matchingteam.activity.HomeActivity
 import com.example.matchingteam.api.board.BoardApi
 import com.example.matchingteam.connection.RetrofitConnection
@@ -192,6 +193,10 @@ class BoardActivity : AppCompatActivity() {
                 0 -> "모집완료"
                 else -> "모집중"
             }
+        val newBackground =
+            if (binding.buttonStatus1.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+        binding.buttonStatus1.setBackgroundResource(newBackground)
+
     }
 
     private fun dynamicLayout2(
@@ -214,6 +219,9 @@ class BoardActivity : AppCompatActivity() {
                 0 -> "모집완료"
                 else -> "모집중"
             }
+        val newBackground =
+            if (binding.buttonStatus2.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+        binding.buttonStatus2.setBackgroundResource(newBackground)
     }
 
     private fun dynamicLayout3(
@@ -236,5 +244,8 @@ class BoardActivity : AppCompatActivity() {
                 0 -> "모집완료"
                 else -> "모집중"
             }
+        val newBackground =
+            if (binding.buttonStatus3.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+        binding.buttonStatus3.setBackgroundResource(newBackground)
     }
 }
