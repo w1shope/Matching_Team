@@ -17,5 +17,6 @@ interface FindPasswordApi {
 
     @GET("/api/users/password/{email}")
     fun getUserPassword(@Path("email") email: String): Call<String>
-
+    @GET("/api/users/password/exist/{email}")
+    fun existUser(@Path("email") email: String): Call<Boolean>
 }

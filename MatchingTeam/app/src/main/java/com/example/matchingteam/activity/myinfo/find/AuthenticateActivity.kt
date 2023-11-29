@@ -1,10 +1,9 @@
 package com.example.matchingteam.activity.myinfo.find
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.matchingteam.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.activity.HomeActivity
 import com.example.matchingteam.api.user.FindPasswordApi
 import com.example.matchingteam.connection.RetrofitConnection
@@ -26,7 +25,7 @@ class AuthenticateActivity : AppCompatActivity() {
         val email = intent.getStringExtra("email")!!
         findPassword(email)
         binding.buttonAuthenticateCode.setOnClickListener {
-            if(binding.editTextAuthenticateCode.text.toString().trim().isEmpty())
+            if (binding.editTextAuthenticateCode.text.toString().trim().isEmpty())
                 Toast.makeText(applicationContext, "인증코드를 입력해주세요", Toast.LENGTH_SHORT).show()
             else
                 authenticate(authenticateDto.authenticateCode, email)
@@ -92,10 +91,15 @@ class AuthenticateActivity : AppCompatActivity() {
                             intent.putExtra("email", email)
                             startActivity(intent)
                         } else {
-                            Toast.makeText(applicationContext, "인증코드가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                applicationContext,
+                                "인증코드가 일치하지 않습니다",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } else {
-                        Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
