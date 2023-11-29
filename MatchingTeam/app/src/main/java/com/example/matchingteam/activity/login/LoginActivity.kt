@@ -47,6 +47,10 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, FindPasswordActivity::class.java)
             startActivity(intent)
         }
+        binding.buttonMoveMain.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun checkLogin(email: String, password: String) {
