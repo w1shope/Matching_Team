@@ -11,6 +11,7 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.activity.HomeActivity
+import com.example.matchingteam.activity.myinfo.find.FindPasswordActivity
 import com.example.matchingteam.activity.register.RegisterActivity
 import com.example.matchingteam.api.user.LoginUserApi
 import com.example.matchingteam.connection.RetrofitConnection
@@ -40,6 +41,10 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.textViewRegisterBtn.setOnClickListener {
             val intent: Intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+        binding.textViewForgotPassword.setOnClickListener {
+            val intent = Intent(this, FindPasswordActivity::class.java)
             startActivity(intent)
         }
     }

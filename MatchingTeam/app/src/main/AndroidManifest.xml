@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.myinfo.find.ShowPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.myinfo.find.AuthenticateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.myinfo.find.FindPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.board.comment.CommentListActivity"
             android:exported="false" />
         <activity

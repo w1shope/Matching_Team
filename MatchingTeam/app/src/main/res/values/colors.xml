@@ -8,4 +8,5 @@
     <color name="write">#00C853</color>
     <color name="board_list">#3DA0DD</color>
     <color name="light_gray">#B6B7BA</color>
+    <color name="input_email">#E5E6EA</color>
 </resources>
