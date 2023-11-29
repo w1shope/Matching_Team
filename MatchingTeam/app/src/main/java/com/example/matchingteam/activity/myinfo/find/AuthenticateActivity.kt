@@ -82,24 +82,18 @@ class AuthenticateActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (response.body()!!) {
                         if (response.body() == true) {
-                            // 비밀번호 표시 페이지로 이동
-                            val intent =
-                                Intent(this@AuthenticateActivity, ShowPasswordActivity::class.java)
-                            intent.putExtra("email", email)
-                            startActivity(intent)
-                        } else {
                             Toast.makeText(
                                 applicationContext,
                                 "인증코드가 일치하지 않습니다",
                                 Toast.LENGTH_SHORT
                             ).show()
+                        } else {
+                            // 비밀번호 표시 페이지로 이동
+                            val intent =
+                                Intent(this@AuthenticateActivity, ShowPasswordActivity::class.java)
+                            intent.putExtra("email", email)
+                            startActivity(intent)
                         }
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            "인증코드가 일치하지 않습니다",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
             }

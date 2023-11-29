@@ -52,16 +52,7 @@ class RegisterActivity : AppCompatActivity() {
                  * 안드로이드 스튜디오에서 해당 인증코드가 일치하는지 확인한다.
                  * 인증이 완료되면 "학교 인증" -> "인증 완료"로 수정한다.
                  */
-                checkUserEmail(email)
-                binding.editTextRegisterCheckEmailConfirm.visibility = View.VISIBLE
-                binding.buttonRegisterCheckEmailConfirmBtn.visibility = View.VISIBLE
-                binding.buttonRegisterCheckEmailBtn.setBackgroundResource(R.drawable.send_ok_button)
-                binding.buttonRegisterCheckEmailBtn.text = "인증 코드 재전송"
-                binding.buttonRegisterCheckEmailConfirmBtn.setOnClickListener {
-                    checkUserEmailConfirm(
-                        binding.editTextRegisterCheckEmailConfirm.text.toString().toInt()
-                    )
-                }
+                existUserEmail(email)
             }
             // "@donga.ac.kr"로 끝나지 않을 때
             else {
@@ -239,6 +230,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -251,5 +243,39 @@ class RegisterActivity : AppCompatActivity() {
         binding.editTextRegisterEmail.isFocusable = false
         binding.editTextRegisterEmail.isFocusableInTouchMode = false
         binding.editTextRegisterEmail.setTextColor(Color.GRAY)
+    }
+    /**
+     * 이메일 중복 체크
+     */
+    private fun existUserEmail(email: String) {
+        val retrofit = RetrofitConnection.getInstance()
+        val api = retrofit.create(RegisterUserApi::class.java)
+        val call = api.existUserEmail(email)
+        call.enqueue(object: Callback<Boolean> {
+            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                if(response.isSuccessful) {
+                    if(response.body() != null) {
+                        if(response.body() == true) {
+                            Toast.makeText(applicationContext, "이미 존재하는 계정입니다", Toast.LENGTH_SHORT).show()
+                        } else {
+                            checkUserEmail(email)
+                            binding.editTextRegisterCheckEmailConfirm.visibility = View.VISIBLE
+                            binding.buttonRegisterCheckEmailConfirmBtn.visibility = View.VISIBLE
+                            binding.buttonRegisterCheckEmailBtn.setBackgroundResource(R.drawable.send_ok_button)
+                            binding.buttonRegisterCheckEmailBtn.text = "인증 코드 재전송"
+                            binding.buttonRegisterCheckEmailConfirmBtn.setOnClickListener {
+                                checkUserEmailConfirm(
+                                    binding.editTextRegisterCheckEmailConfirm.text.toString().toInt()
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
