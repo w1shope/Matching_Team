@@ -1,5 +1,6 @@
 package com.example.matchingteam.activity.register
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.R
+import com.example.matchingteam.activity.HomeActivity
 import com.example.matchingteam.api.user.RegisterUserApi
 import com.example.matchingteam.connection.RetrofitConnection
 import com.example.matchingteam.databinding.ActivityRegisterBinding
@@ -113,7 +115,10 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-
+        binding.buttonMoveMain.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
         val registerBtn: Button = binding.buttonRegisterUser
         registerBtn.setOnClickListener {
             if (isSuccessAuthentiate) {
