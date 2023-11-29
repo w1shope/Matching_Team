@@ -251,7 +251,6 @@ class EnrolBoardListActivity : AppCompatActivity() {
         val call: Call<Boolean> = api.updateBoardStaus(BoardStatusDto(title, content), status)
         call.enqueue(object : Callback<Boolean> {
             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                Log.d("title, content, status : ", title + content + status)
                 if (response.isSuccessful) {
                     if (response.body() != null) {
                         Toast.makeText(

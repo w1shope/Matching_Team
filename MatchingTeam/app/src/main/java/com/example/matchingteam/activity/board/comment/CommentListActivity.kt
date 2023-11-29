@@ -53,7 +53,6 @@ class CommentListActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("response=", response.body().toString())
                         val boards: List<ListBoardDto>? = response.body()
                         if (boards != null) {
                             for (index in boards.indices) {

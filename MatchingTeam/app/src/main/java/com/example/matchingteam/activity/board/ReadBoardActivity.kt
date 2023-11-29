@@ -205,7 +205,6 @@ class ReadBoardActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
-                        Log.d("response=", response.body().toString())
                         updateUIComments(
                             response.body()!!.name,
                             response.body()!!.content,

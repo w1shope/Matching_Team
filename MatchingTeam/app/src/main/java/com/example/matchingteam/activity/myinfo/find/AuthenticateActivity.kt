@@ -2,6 +2,7 @@ package com.example.matchingteam.activity.myinfo.find
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.activity.HomeActivity
@@ -28,7 +29,7 @@ class AuthenticateActivity : AppCompatActivity() {
             if (binding.editTextAuthenticateCode.text.toString().trim().isEmpty())
                 Toast.makeText(applicationContext, "인증코드를 입력해주세요", Toast.LENGTH_SHORT).show()
             else
-                authenticate(authenticateDto.authenticateCode, email)
+                authenticate(binding.editTextAuthenticateCode.text.toString().toInt(), email)
         }
         binding.imageviewPrevPage.setOnClickListener {
             finish()
@@ -39,10 +40,6 @@ class AuthenticateActivity : AppCompatActivity() {
         }
         binding.imageviewPrevPage.setOnClickListener {
             finish()
-        }
-        binding.imageViewExitPage.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
         }
     }
 
@@ -83,7 +80,7 @@ class AuthenticateActivity : AppCompatActivity() {
         call.enqueue(object : Callback<Boolean> {
             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                 if (response.isSuccessful) {
-                    if (response.body() != null) {
+                    if (response.body()!!) {
                         if (response.body() == true) {
                             // 비밀번호 표시 페이지로 이동
                             val intent =
@@ -98,8 +95,11 @@ class AuthenticateActivity : AppCompatActivity() {
                             ).show()
                         }
                     } else {
-                        Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(
+                            applicationContext,
+                            "인증코드가 일치하지 않습니다",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
