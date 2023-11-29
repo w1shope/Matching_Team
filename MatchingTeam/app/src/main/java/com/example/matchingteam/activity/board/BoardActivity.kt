@@ -90,6 +90,7 @@ class BoardActivity : AppCompatActivity() {
                                     0 -> dynamicLayout1(
                                         boards.get(index).title,
                                         boards.get(index).content,
+                                        boards.get(index).name,
                                         boards.get(index).createdDate,
                                         boards.get(index).viewCnt,
                                         boards.get(index).status
@@ -98,6 +99,7 @@ class BoardActivity : AppCompatActivity() {
                                     1 -> dynamicLayout2(
                                         boards.get(index).title,
                                         boards.get(index).content,
+                                        boards.get(index).name,
                                         boards.get(index).createdDate,
                                         boards.get(index).viewCnt,
                                         boards.get(index).status
@@ -106,6 +108,7 @@ class BoardActivity : AppCompatActivity() {
                                     else -> dynamicLayout3(
                                         boards.get(index).title,
                                         boards.get(index).content,
+                                        boards.get(index).name,
                                         boards.get(index).createdDate,
                                         boards.get(index).viewCnt,
                                         boards.get(index).status
@@ -172,14 +175,15 @@ class BoardActivity : AppCompatActivity() {
     private fun dynamicLayout1(
         title: String,
         content: String,
+        name: String,
         createdDate: Timestamp,
         viewCnt: Int,
         statusId: Int
     ) {
         binding.mainLayout1.visibility = View.VISIBLE
         binding.textViewTitle1.text = title
-        binding.textViewWriter1.text = "테스트"
         binding.textViewContent1.text = content
+        binding.textViewWriter1.text = "작성자 : ${name} "
         binding.textViewCreatedDate1.text = "작성일자 : ${timestampToStr(createdDate)}"
         binding.textViewViewCnt1.text = "조회수 : ${viewCnt}"
         binding.hiddenCreatedDate1.text = createdDate.toString()
@@ -193,6 +197,7 @@ class BoardActivity : AppCompatActivity() {
     private fun dynamicLayout2(
         title: String,
         content: String,
+        name: String,
         createdDate: Timestamp,
         viewCnt: Int,
         statusId: Int
@@ -200,6 +205,7 @@ class BoardActivity : AppCompatActivity() {
         binding.mainLayout2.visibility = View.VISIBLE
         binding.textViewTitle2.text = title
         binding.textViewContent2.text = content
+        binding.textViewWriter2.text = "작성자 : ${name} "
         binding.textViewCreatedDate2.text = "작성일자 : ${timestampToStr(createdDate)}"
         binding.textViewViewCnt2.text = "조회수 : ${viewCnt}"
         binding.hiddenCreatedDate2.text = createdDate.toString()
@@ -213,6 +219,7 @@ class BoardActivity : AppCompatActivity() {
     private fun dynamicLayout3(
         title: String,
         content: String,
+        name: String,
         createdDate: Timestamp,
         viewCnt: Int,
         statusId: Int
@@ -220,6 +227,7 @@ class BoardActivity : AppCompatActivity() {
         binding.mainLayout3.visibility = View.VISIBLE
         binding.textViewTitle3.text = title
         binding.textViewContent3.text = content
+        binding.textViewWriter3.text = "작성자 : ${name} "
         binding.textViewCreatedDate3.text = "작성일자 : " + timestampToStr(createdDate)
         binding.textViewViewCnt3.text = "조회수 : ${viewCnt}"
         binding.hiddenCreatedDate3.text = createdDate.toString()

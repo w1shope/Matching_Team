@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.R
 import com.example.matchingteam.activity.HomeActivity
+import com.example.matchingteam.activity.board.EnrolBoardListActivity
 import com.example.matchingteam.activity.board.comment.CommentListActivity
 import com.example.matchingteam.activity.login.LoginActivity
 import com.example.matchingteam.api.user.MyInfoApi

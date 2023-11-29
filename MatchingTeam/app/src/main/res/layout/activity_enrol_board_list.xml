@@ -23,7 +23,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/view_border"
-        android:visibility="gone"
         android:orientation="horizontal">
 
         <Button
@@ -75,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="작성자 : 이희망 "
+                    android:text="작성자 : ."
                     android:textColor="#575151"
                     android:textSize="12dp"></TextView>
 
@@ -171,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="작성자 : 이희망 "
+                    android:text="작성자 : ."
                     android:textColor="#575151"
                     android:textSize="12dp"></TextView>
 
@@ -266,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="작성자 : 이희망 "
+                    android:text="작성자 : ."
                     android:textColor="#575151"
                     android:textSize="12dp"></TextView>
 

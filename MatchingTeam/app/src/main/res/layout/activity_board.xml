@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="작성자 : 이희망 "
+                    android:text="작성자 : ."
                     android:textColor="#575151"
                     android:textSize="12dp"></TextView>
 
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="작성자 : 이희망 "
+                    android:text="작성자 : ."
                     android:textColor="#575151"
                     android:textSize="12dp"></TextView>
 
@@ -266,7 +266,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="작성자 : 이희망 "
+                    android:text="작성자 : ."
                     android:textColor="#575151"
                     android:textSize="12dp"></TextView>
 

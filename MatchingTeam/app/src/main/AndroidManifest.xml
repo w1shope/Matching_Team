@@ -28,7 +28,7 @@
             android:name=".activity.board.comment.CommentListActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.myinfo.EnrolBoardListActivity"
+            android:name=".activity.board.EnrolBoardListActivity"
             android:exported="false" />
         <activity
             android:name=".activity.board.UpdateBoardActivity"

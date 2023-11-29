@@ -1,4 +1,4 @@
-package com.example.matchingteam.activity.myinfo
+package com.example.matchingteam.activity.board
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -6,7 +6,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -14,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.R
 import com.example.matchingteam.activity.HomeActivity
-import com.example.matchingteam.activity.board.ReadBoardActivity
 import com.example.matchingteam.api.board.BoardApi
 import com.example.matchingteam.connection.RetrofitConnection
 import com.example.matchingteam.databinding.ActivityEnrolBoardListBinding
@@ -68,6 +66,7 @@ class EnrolBoardListActivity : AppCompatActivity() {
                                     0 -> dynamicLayout1(
                                         boards.get(index).title,
                                         boards.get(index).content,
+                                        boards.get(index).name,
                                         boards.get(index).createdDate,
                                         boards.get(index).viewCnt,
                                         boards.get(index).status
@@ -76,6 +75,7 @@ class EnrolBoardListActivity : AppCompatActivity() {
                                     1 -> dynamicLayout2(
                                         boards.get(index).title,
                                         boards.get(index).content,
+                                        boards.get(index).name,
                                         boards.get(index).createdDate,
                                         boards.get(index).viewCnt,
                                         boards.get(index).status
@@ -84,6 +84,7 @@ class EnrolBoardListActivity : AppCompatActivity() {
                                     else -> dynamicLayout3(
                                         boards.get(index).title,
                                         boards.get(index).content,
+                                        boards.get(index).name,
                                         boards.get(index).createdDate,
                                         boards.get(index).viewCnt,
                                         boards.get(index).status
@@ -156,13 +157,14 @@ class EnrolBoardListActivity : AppCompatActivity() {
     private fun dynamicLayout1(
         title: String,
         content: String,
+        name: String,
         createdDate: Timestamp,
         viewCnt: Int,
         statusId: Int
     ) {
         binding.mainLayout1.visibility = View.VISIBLE
         binding.textViewTitle1.text = title
-        binding.textViewWriter1.text = "테스트"
+        binding.textViewWriter1.text = "작성자 : ${name}"
         binding.textViewContent1.text = content
         binding.textViewCreatedDate1.text = "작성일자 : ${timestampToStr(createdDate)}"
         binding.textViewViewCnt1.text = "조회수 : ${viewCnt}"
@@ -177,12 +179,14 @@ class EnrolBoardListActivity : AppCompatActivity() {
     private fun dynamicLayout2(
         title: String,
         content: String,
+        name: String,
         createdDate: Timestamp,
         viewCnt: Int,
         statusId: Int
     ) {
         binding.mainLayout2.visibility = View.VISIBLE
         binding.textViewTitle2.text = title
+        binding.textViewWriter2.text = "작성자 : ${name}"
         binding.textViewContent2.text = content
         binding.textViewCreatedDate2.text = "작성일자 : ${timestampToStr(createdDate)}"
         binding.textViewViewCnt2.text = "조회수 : ${viewCnt}"
@@ -197,12 +201,14 @@ class EnrolBoardListActivity : AppCompatActivity() {
     private fun dynamicLayout3(
         title: String,
         content: String,
+        name: String,
         createdDate: Timestamp,
         viewCnt: Int,
         statusId: Int
     ) {
         binding.mainLayout3.visibility = View.VISIBLE
         binding.textViewTitle3.text = title
+        binding.textViewWriter3.text = "작성자 : ${name}"
         binding.textViewContent3.text = content
         binding.textViewCreatedDate3.text = "작성일자 : " + timestampToStr(createdDate)
         binding.textViewViewCnt3.text = "조회수 : ${viewCnt}"

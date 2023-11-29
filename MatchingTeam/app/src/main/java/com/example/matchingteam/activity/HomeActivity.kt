@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.R
 import com.example.matchingteam.activity.board.BoardActivity
 import com.example.matchingteam.activity.login.LoginActivity
-import com.example.matchingteam.activity.myinfo.EnrolBoardListActivity
+import com.example.matchingteam.activity.board.EnrolBoardListActivity
 import com.example.matchingteam.activity.myinfo.MyInfoActivity
 import com.example.matchingteam.activity.register.RegisterActivity
 import com.example.matchingteam.api.user.FindUserApi
