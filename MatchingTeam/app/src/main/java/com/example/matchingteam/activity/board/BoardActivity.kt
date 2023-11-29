@@ -68,6 +68,47 @@ class BoardActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
+        binding.textViewShowAllBoard.setOnClickListener {
+            if (binding.textViewTitle1.text.toString() != "출력할 제목")
+                binding.mainLayout1.visibility = View.VISIBLE
+            if (binding.textViewTitle2.text.toString() != "출력할 제목")
+                binding.mainLayout2.visibility = View.VISIBLE
+            if (binding.textViewTitle3.text.toString() != "출력할 제목")
+                binding.mainLayout3.visibility = View.VISIBLE
+        }
+        binding.textViewRecruitBoard.setOnClickListener {
+            if (binding.buttonStatus1.text == "모집중") {
+                binding.mainLayout1.visibility = View.VISIBLE
+            } else {
+                binding.mainLayout1.visibility = View.GONE
+            }
+            if (binding.buttonStatus2.text == "모집중") {
+                binding.mainLayout2.visibility = View.VISIBLE
+            } else {
+                binding.mainLayout2.visibility = View.GONE
+            }
+            if (binding.buttonStatus3.text == "모집중") {
+                binding.mainLayout3.visibility = View.VISIBLE
+            } else {
+                binding.mainLayout3.visibility = View.GONE
+            }
+        }
+        binding.textViewShowCompleteBoard.setOnClickListener {
+            if (binding.buttonStatus1.text == "모집완료") {
+                binding.mainLayout1.visibility = View.VISIBLE
+            } else
+                binding.mainLayout1.visibility = View.GONE
+            if (binding.buttonStatus2.text == "모집완료") {
+                binding.mainLayout2.visibility = View.VISIBLE
+            } else
+                binding.mainLayout2.visibility = View.GONE
+            if (binding.buttonStatus3.text == "모집완료") {
+                binding.mainLayout3.visibility = View.VISIBLE
+            } else {
+                binding.mainLayout3.visibility = View.GONE
+            }
+
+        }
     }
 
     /**
@@ -194,7 +235,9 @@ class BoardActivity : AppCompatActivity() {
                 else -> "모집중"
             }
         val newBackground =
-            if (binding.buttonStatus1.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+            if (binding.buttonStatus1.text.toString()
+                    .trim() == "모집완료"
+            ) R.drawable.red_btn else R.drawable.green_btn
         binding.buttonStatus1.setBackgroundResource(newBackground)
 
     }
@@ -220,7 +263,9 @@ class BoardActivity : AppCompatActivity() {
                 else -> "모집중"
             }
         val newBackground =
-            if (binding.buttonStatus2.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+            if (binding.buttonStatus2.text.toString()
+                    .trim() == "모집완료"
+            ) R.drawable.red_btn else R.drawable.green_btn
         binding.buttonStatus2.setBackgroundResource(newBackground)
     }
 
@@ -245,7 +290,9 @@ class BoardActivity : AppCompatActivity() {
                 else -> "모집중"
             }
         val newBackground =
-            if (binding.buttonStatus3.text.toString().trim() == "모집완료") R.drawable.red_btn else R.drawable.green_btn
+            if (binding.buttonStatus3.text.toString()
+                    .trim() == "모집완료"
+            ) R.drawable.red_btn else R.drawable.green_btn
         binding.buttonStatus3.setBackgroundResource(newBackground)
     }
 }
