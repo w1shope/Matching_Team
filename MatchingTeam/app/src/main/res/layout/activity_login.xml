@@ -33,7 +33,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:hint="Enter password"
-        android:inputType="textVisiblePassword"
+        android:inputType="textPassword"
         android:textAlignment="center"
         android:textSize="30dp"></EditText>
 
