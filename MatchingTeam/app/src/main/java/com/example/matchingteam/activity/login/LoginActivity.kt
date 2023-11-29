@@ -22,22 +22,16 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // 자동 로그인
-        autoLogin()
 
         binding.buttonLoginUser.setOnClickListener {
             val email: String = binding.editTextLoginEmail.text.toString().trim()
             val password: String = binding.editTextLoginPassword.text.toString().trim()
             checkLogin(email, password)
-        }
-        binding.checkboxAutoLogin.setOnClickListener {
-            val email: String = binding.editTextLoginEmail.text.toString().trim()
-            val password: String = binding.editTextLoginPassword.text.toString().trim()
-            isClickAutoLoginCheckBox(binding.checkboxAutoLogin, email, password)
         }
         binding.textViewRegisterBtn.setOnClickListener {
             val intent: Intent = Intent(this@LoginActivity, RegisterActivity::class.java)
@@ -81,37 +75,6 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
-
-    /**
-     * 로그인 시에 자동 로그인을 클릭했는지 확인하는 메서드
-     */
-    private fun isClickAutoLoginCheckBox(checkBox: CheckBox, email: String, password: String) {
-        // 자동로그인 클릭하였을 때
-        if (checkBox.isChecked) {
-            val auto: SharedPreferences =
-                getSharedPreferences("sharedPreferences", Activity.MODE_PRIVATE)
-            val autoLoginEdit: SharedPreferences.Editor = auto.edit()
-            // 로그인 정보 저장
-            autoLoginEdit.putString("autoLoginEmail", email)
-            autoLoginEdit.putString("autoLoginPassword", password)
-            autoLoginEdit.commit()
-        }
-    }
-
-    /**
-     * 자동 로그인 메서드
-     */
-    private fun autoLogin() {
-        val sp: SharedPreferences = getSharedPreferences("sharedPreferences", Activity.MODE_PRIVATE)
-        // null : key에 대한 value가 없을 때, 반환할 값
-        val autoLoginEmail: String? = sp.getString("autoLoginEmail", null)
-        val autoLoginPassword: String? = sp.getString("autoLoginPassword", null)
-
-        if (autoLoginEmail != null && autoLoginPassword != null) {
-            checkLogin(autoLoginEmail, autoLoginPassword)
-        }
-    }
-
     /**
      * 로그인 정보 저장
      */

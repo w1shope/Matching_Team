@@ -37,14 +37,6 @@
         android:textAlignment="center"
         android:textSize="30dp"></EditText>
 
-    <CheckBox
-        android:id="@+id/checkboxAutoLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="30dp"
-        android:text="자동로그인"></CheckBox>
-
     <Button
         android:id="@+id/buttonLoginUser"
         android:layout_width="200dp"
@@ -53,12 +45,13 @@
         android:layout_marginTop="30dp"
         android:text="로그인"
         android:textSize="30dp"></Button>
+
     <Button
         android:id="@+id/button_move_main"
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
-        android:text="매인화면"
+        android:text="메인화면"
         android:textSize="30dp"></Button>
 
     <TextView
