@@ -24,4 +24,6 @@ interface CommentApi {
 
     @GET("/api/comments/{email}")
     fun findCommentAll(@Path("email") email: String): Call<List<ListBoardDto>>
+    @GET("/api/comments/writer")
+    fun findCommentWriter(@Query("title") titie: String, @Query("content") content: String): Call<String>
 }

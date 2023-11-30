@@ -140,7 +140,16 @@ class RegisterActivity : AppCompatActivity() {
         val retrofit = RetrofitConnection.getInstance()
         val api: RegisterUserApi = retrofit.create(RegisterUserApi::class.java)
         val call: Call<Long> =
-            api.saveUser(RegisterUserDto(email, name, password, studentNum, department, development))
+            api.saveUser(
+                RegisterUserDto(
+                    email,
+                    name,
+                    password,
+                    studentNum,
+                    department,
+                    development
+                )
+            )
         call.enqueue(object : Callback<Long> {
             override fun onResponse(
                 call: Call<Long>,
@@ -203,27 +212,24 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
-                        if (response.body()!!) {
-                            isSuccessAuthentiate = true
-                            if (isSuccessAuthentiate) {
-                                Toast.makeText(
-                                    applicationContext,
-                                    "학생 인증이 완료 되었습니다",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                                binding.buttonRegisterCheckEmailBtn.text = "인증 완료"
-                                modifyPrevention()
-                                binding.buttonRegisterCheckEmailConfirmBtn.visibility = View.GONE
-                                binding.editTextRegisterCheckEmailConfirm.visibility = View.GONE
-                            } else {
-                                Toast.makeText(
-                                    applicationContext,
-                                    "인증 코드가 일치하지 않습니다",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                            }
+                        isSuccessAuthentiate = response.body()!!
+                        if (isSuccessAuthentiate) {
+                            Toast.makeText(
+                                applicationContext,
+                                "학생 인증이 완료 되었습니다",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            binding.buttonRegisterCheckEmailBtn.text = "인증 완료"
+                            modifyPrevention()
+                            binding.buttonRegisterCheckEmailConfirmBtn.visibility = View.GONE
+                            binding.editTextRegisterCheckEmailConfirm.visibility = View.GONE
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "인증 코드가 일치하지 않습니다",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
@@ -244,6 +250,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.editTextRegisterEmail.isFocusableInTouchMode = false
         binding.editTextRegisterEmail.setTextColor(Color.GRAY)
     }
+
     /**
      * 이메일 중복 체크
      */
@@ -251,12 +258,13 @@ class RegisterActivity : AppCompatActivity() {
         val retrofit = RetrofitConnection.getInstance()
         val api = retrofit.create(RegisterUserApi::class.java)
         val call = api.existUserEmail(email)
-        call.enqueue(object: Callback<Boolean> {
+        call.enqueue(object : Callback<Boolean> {
             override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if(response.isSuccessful) {
-                    if(response.body() != null) {
-                        if(response.body() == true) {
-                            Toast.makeText(applicationContext, "이미 존재하는 계정입니다", Toast.LENGTH_SHORT).show()
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        if (response.body() == true) {
+                            Toast.makeText(applicationContext, "이미 존재하는 계정입니다", Toast.LENGTH_SHORT)
+                                .show()
                         } else {
                             checkUserEmail(email)
                             binding.editTextRegisterCheckEmailConfirm.visibility = View.VISIBLE
@@ -265,7 +273,8 @@ class RegisterActivity : AppCompatActivity() {
                             binding.buttonRegisterCheckEmailBtn.text = "인증 코드 재전송"
                             binding.buttonRegisterCheckEmailConfirmBtn.setOnClickListener {
                                 checkUserEmailConfirm(
-                                    binding.editTextRegisterCheckEmailConfirm.text.toString().toInt()
+                                    binding.editTextRegisterCheckEmailConfirm.text.toString()
+                                        .toInt()
                                 )
                             }
                         }

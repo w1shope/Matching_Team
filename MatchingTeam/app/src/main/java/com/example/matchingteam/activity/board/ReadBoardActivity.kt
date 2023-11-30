@@ -211,6 +211,7 @@ class ReadBoardActivity : AppCompatActivity() {
                             response.body()!!.content,
                             response.body()!!.createdDate
                         )
+                        getCommentWriter(title, content)
                     }
                 }
             }
@@ -229,7 +230,11 @@ class ReadBoardActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
                         if (response.body() == false) {
-                            Toast.makeText(applicationContext, "댓글 작성자만 삭제할 수 있습니다", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                applicationContext,
+                                "댓글 작성자만 삭제할 수 있습니다",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                         } else {
                             Toast.makeText(
@@ -261,7 +266,27 @@ class ReadBoardActivity : AppCompatActivity() {
         val sp = getSharedPreferences("sharedPreferences", MODE_PRIVATE)
         return sp.getString("loginEmail", null)!!
     }
+
     private fun timestampToStr(date: Timestamp): String {
         return SimpleDateFormat("yyyy-MM-dd").format(date)
+    }
+
+    private fun getCommentWriter(title: String, content: String) {
+        val retrofit = RetrofitConnection.getInstance()
+        val api = retrofit.create(CommentApi::class.java)
+        val call = api.findCommentWriter(title, content)
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        binding.textViewCommentWriter.text = response.body()!!
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

@@ -25,7 +25,7 @@ interface BoardApi {
     fun findBoard(
         @Query("title") title: String,
         @Query("content") content: String,
-        @Query("createdDate") createdDate: Timestamp, // Assuming this needs to be a String
+        @Query("createdDate") createdDate: Timestamp,
         @Query("viewCnt") viewCnt: Int
     ): Call<Board>
 
