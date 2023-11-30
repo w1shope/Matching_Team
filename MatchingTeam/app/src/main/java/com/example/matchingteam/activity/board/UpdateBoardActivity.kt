@@ -74,7 +74,7 @@ class UpdateBoardActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
             }
         })
     }

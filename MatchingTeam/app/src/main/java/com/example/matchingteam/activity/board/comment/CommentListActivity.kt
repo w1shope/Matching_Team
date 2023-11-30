@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.activity.HomeActivity
 import com.example.matchingteam.activity.board.ReadBoardActivity
@@ -72,6 +73,7 @@ class CommentListActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<ListBoardDto>>, t: Throwable) {
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
             }
         })
     }

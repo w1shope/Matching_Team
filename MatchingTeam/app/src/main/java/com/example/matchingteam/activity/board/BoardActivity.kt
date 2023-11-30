@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.matchingteam.R
 import com.example.matchingteam.activity.HomeActivity
@@ -200,7 +201,7 @@ class BoardActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Board>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -97,7 +97,9 @@ class EnrolBoardListActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<ListBoardDto>?>, t: Throwable) {}
+            override fun onFailure(call: Call<List<ListBoardDto>?>, t: Throwable) {
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
+            }
         })
     }
 
@@ -278,6 +280,7 @@ class EnrolBoardListActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                Toast.makeText(applicationContext, "네트워크에 문제가 발생하였습니다", Toast.LENGTH_SHORT).show()
             }
         })
     }
