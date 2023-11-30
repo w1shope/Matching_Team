@@ -3,6 +3,7 @@ package com.example.matchingteam.activity.board
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -75,6 +76,9 @@ class BoardActivity : AppCompatActivity() {
                 binding.mainLayout2.visibility = View.VISIBLE
             if (binding.textViewTitle3.text.toString() != "출력할 제목")
                 binding.mainLayout3.visibility = View.VISIBLE
+            binding.textViewShowAllBoard.setTextColor(Color.BLACK)
+            binding.textViewRecruitBoard.setTextColor(Color.GRAY)
+            binding.textViewShowCompleteBoard.setTextColor(Color.GRAY)
         }
         binding.textViewRecruitBoard.setOnClickListener {
             if (binding.buttonStatus1.text == "모집중") {
@@ -92,6 +96,9 @@ class BoardActivity : AppCompatActivity() {
             } else {
                 binding.mainLayout3.visibility = View.GONE
             }
+            binding.textViewShowAllBoard.setTextColor(Color.GRAY)
+            binding.textViewRecruitBoard.setTextColor(Color.BLACK)
+            binding.textViewShowCompleteBoard.setTextColor(Color.GRAY)
         }
         binding.textViewShowCompleteBoard.setOnClickListener {
             if (binding.buttonStatus1.text == "모집완료") {
@@ -107,7 +114,9 @@ class BoardActivity : AppCompatActivity() {
             } else {
                 binding.mainLayout3.visibility = View.GONE
             }
-
+            binding.textViewShowAllBoard.setTextColor(Color.GRAY)
+            binding.textViewRecruitBoard.setTextColor(Color.GRAY)
+            binding.textViewShowCompleteBoard.setTextColor(Color.BLACK)
         }
     }
 
